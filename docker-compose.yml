@@ -1,0 +1,32 @@
+version: '2'
+services:
+  api:
+    build: ./api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - attendance-service
+    environment:
+      # Activate docker profile to override database url and server port
+      - SPRING_PROFILES_ACTIVE=docker
+      # Setting env vars is another eay how to override values but specifying it in the profile property file
+      # is more elegant way
+      #- SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/microservice_test
+      #- SERVER_PORT=8080
+  attendance-service:
+    build: ./attendance-service
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    environment:
+      # Activate docker profile to override database url and server port
+      - SPRING_PROFILES_ACTIVE=docker
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=microservice_test
+      - POSTGRES_USER=microservice_test
+      - POSTGRES_DB=microservice_test

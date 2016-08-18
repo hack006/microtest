@@ -1,0 +1,5 @@
+runtime: custom
+vm: true
+service: attendance-service
+env_variables:
+  SPRING_PROFILES_ACTIVE: appengine

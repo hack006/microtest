@@ -1,0 +1,23 @@
+---
+applications:
+- name: attendance-service
+  memory: 512M
+  instances: 1
+  buildpack: java_buildpack
+  host: microtest-attendance-service
+  path: ./attendance-service/build/libs/attendance-service.jar
+  env:
+    SPRING_PROFILES_ACTIVE: cf
+  services:
+    - elephantsql
+
+- name: api
+  memory: 512M
+  instances: 1
+  buildpack: java_buildpack
+  host: microtest-api
+  path: ./api/build/libs/api.jar
+  env:
+      SPRING_PROFILES_ACTIVE: cf
+  services:
+    - elephantsql

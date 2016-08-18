@@ -1,0 +1,11 @@
+description 'Contracts for data exchanges - transport objects'
+
+jar {
+    baseName = 'common'
+    version = '0.0.1-SNAPSHOT'
+    mainClassName = 'cz.ondrajanata.microtest.contracts.Main'
+}
+
+bootRepackage {
+    enabled = false
+}
